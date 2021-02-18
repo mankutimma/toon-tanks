@@ -18,15 +18,15 @@ class TOONTANKS_API APawnBase : public APawn
 
 private:
 	// Capsule component is used for simple collission
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta=(AllowPrivateAccess="true"))
 	UCapsuleComponent* CapsuleComp = nullptr;
 
 	// We don't need to forward declare static mesh components or scene components since the APawn/Aactor class is already aware of what it is.
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* BaseMesh = nullptr;
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* TurretMesh = nullptr;
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint = nullptr; //Scene component is a collection of data essentially with transforms so that we can place the projectile at a certain spawn point
 
 public:

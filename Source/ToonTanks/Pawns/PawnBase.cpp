@@ -15,7 +15,7 @@ APawnBase::APawnBase()
 	RootComponent = CapsuleComp;
 
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Base Mesh"));
-	BaseMesh->SetupAttachment(RootComponent); // We want BaseMesh ti inherit the movement of the capsule component below it.
+	BaseMesh->SetupAttachment(RootComponent); // We want BaseMesh to inherit the movement of the capsule component below it.
 
 	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Turret Mesh"));
 	TurretMesh->SetupAttachment(BaseMesh);
