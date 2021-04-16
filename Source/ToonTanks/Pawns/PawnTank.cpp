@@ -33,4 +33,22 @@ void APawnTank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	PlayerInputComponent->BindAxis("MoveForward", this, APawnTank::CalculateMoveInput); // "this" is the "world context"
+	PlayerInputComponent->BindAxis("Turn", this, APawnTank::CalculateRotateInput);
+}
+
+void APawnTank::CalculateMoveInput(float Value)
+{
+}
+
+void APawnTank::CalculateRotateInput(float Value)
+{
+}
+
+void APawnTank::Move()
+{
+}
+
+void APawnTank::Rotate()
+{
 }

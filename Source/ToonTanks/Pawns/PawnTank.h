@@ -21,6 +21,21 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* Camera = nullptr;
 
+	FVector MoveDirection;
+	FQuat RotationDirection;
+
+	// For axis bindings and to calculate the direction of movement and rotation
+	void CalculateMoveInput(float Value);
+	void CalculateRotateInput(float Value);
+
+	float MoveSpeed = 100.f;
+	float RotateSpeed = 100.f;
+
+	// Functions to run on even tick. They will cause movement/rotation in the direction based on the calulations made in the CalculateMoveInput and CalculateRotateInput functions
+	void Move();
+	void Rotate();
+
+
 public:
 	// constructor
 	APawnTank();
