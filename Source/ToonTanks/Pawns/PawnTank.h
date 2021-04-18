@@ -31,7 +31,10 @@ private:
 	// For axis bindings and to calculate the direction of rotation
 	void CalculateRotateInput(float Value);
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
 	float MoveSpeed = 100.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
 	float RotateSpeed = 100.f;
 
 	// Functions to run on even tick. They will cause movement/rotation in the direction based on the calulations made in the CalculateMoveInput and CalculateRotateInput functions
