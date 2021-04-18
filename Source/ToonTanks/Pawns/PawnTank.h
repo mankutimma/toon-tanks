@@ -24,8 +24,11 @@ private:
 	FVector MoveDirection;
 	FQuat RotationDirection;
 
-	// For axis bindings and to calculate the direction of movement and rotation
+	// For axis bindings and to calculate the direction of movement
+	// Value is 0 when nothing is pressed and 1 when 'W' is pressed and -1 when 'S' is pressed. This is defined in Edit -> Project Settings -> Engine -> Input -> Axis mappings 
 	void CalculateMoveInput(float Value);
+	
+	// For axis bindings and to calculate the direction of rotation
 	void CalculateRotateInput(float Value);
 
 	float MoveSpeed = 100.f;
