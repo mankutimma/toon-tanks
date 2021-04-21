@@ -1,14 +1,15 @@
 // // Copyright 2021 Ashish Jagadish, Inc. All Rights Reserved.
 
+// The static-tank that fires at the player-tank
+
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Pawns/PawnBase.h"
 #include "PawnTurret.generated.h"
 
-/**
- * 
- */
+class APawnTank;
+
 UCLASS()
 class TOONTANKS_API APawnTurret : public APawnBase
 {
@@ -19,9 +20,15 @@ private:
 	UPROPERTY(EditAnywhere, BluePrintReadWrite, Category = "Combat", meta = (AllowPrivateAccess = "true"))
 	float FireRate = 2.f;
 
-	void CheckFireCondition();
+	UPROPERTY(EditAnywhere, BluePrintReadWrite, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	float FireRange = 500.f;
 
 	FTimerHandle FireRateTimerHandle;
+	APawnTank* PlayerPawn = nullptr;
+
+	void CheckFireCondition();
+	float ReturnDistanceToPlayerPawn() const;
+
 
 public:
 	// constructor
