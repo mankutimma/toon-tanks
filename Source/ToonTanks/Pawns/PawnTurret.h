@@ -30,12 +30,6 @@ private:
 	void CheckFireCondition();
 	float ReturnDistanceToPlayerPawn() const;
 
-
-	APawnTank* PlayerPawn = nullptr;
-
-	void CheckFireCondition();
-	float ReturnDistanceToPlayerPawn() const;
-
 public:
 	// constructor
 	APawnTurret();
