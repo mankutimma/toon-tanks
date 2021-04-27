@@ -39,6 +39,7 @@ void APawnTurret::CheckFireCondition()
 	{
 		return;
 	}
+
 	// If Player is in RANGE, then FIRE!!
 	if (ReturnDistanceToPlayerPawn() <= FireRange)
 	{
@@ -50,9 +51,8 @@ float APawnTurret::ReturnDistanceToPlayerPawn() const
 {
 	if (!PlayerPawn)
 	{
-		return -1.f;
+		return 0.f;
 	}
-	float distance = FVector::Dist(GetOwner()->GetActorLocation(), PlayerPawn->GetActorLocation());
-	return distance;
+	float Distance = FVector::Dist(GetActorLocation(), PlayerPawn->GetActorLocation());
+	return Distance;
 }
-

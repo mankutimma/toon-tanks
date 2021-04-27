@@ -6,9 +6,10 @@
 
 #include "CoreMinimal.h"
 #include "Pawns/PawnBase.h"
+#include "Pawns/PawnTank.h"
 #include "PawnTurret.generated.h"
 
-class APawnTank;
+//class APawnTank;
 
 UCLASS()
 class TOONTANKS_API APawnTurret : public APawnBase
@@ -28,7 +29,6 @@ private:
 
 	void CheckFireCondition();
 	float ReturnDistanceToPlayerPawn() const;
-
 
 public:
 	// constructor
