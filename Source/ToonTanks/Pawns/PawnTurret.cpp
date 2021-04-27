@@ -51,8 +51,11 @@ float APawnTurret::ReturnDistanceToPlayerPawn() const
 {
 	if (!PlayerPawn)
 	{
-		return 0.f;
+		return -1.f;
 	}
+
+	// GetOwner()->GetActorLocation() instead of just GetActorLocation() crashes unreal with a fatal error upon clicking play button.
+	// Why does this happen?
 	float Distance = FVector::Dist(GetActorLocation(), PlayerPawn->GetActorLocation());
 	return Distance;
 }
