@@ -1,5 +1,7 @@
 // // Copyright 2021 Ashish Jagadish, Inc. All Rights Reserved.
 
+// The static-tank that fires at the player-tank
+
 #pragma once
 
 #include "CoreMinimal.h"
@@ -24,10 +26,10 @@ private:
 
 	FTimerHandle FireRateTimerHandle;
 
-	APawnTank *PlayerPawn;
+	APawnTank* PlayerPawn = nullptr;
 
 	void CheckFireCondition();
-	float ReturnDistanceToPlayerPawn();
+	float ReturnDistanceToPlayerPawn() const;
 
 public:
 	// constructor

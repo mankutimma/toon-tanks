@@ -1,5 +1,6 @@
 // // Copyright 2021 Ashish Jagadish, Inc. All Rights Reserved.
 
+// The static-tank that fires at the player-tank
 
 #include "PawnTurret.h"
 #include "Kismet/GameplayStatics.h"
@@ -7,6 +8,7 @@
 
 APawnTurret::APawnTurret()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Constructor is doing nothing!"));
 }
 
 // Called when the game starts or when spawned
@@ -43,11 +45,12 @@ void APawnTurret::CheckFireCondition()
 	}
 }
 
-float APawnTurret::ReturnDistanceToPlayerPawn()
+float APawnTurret::ReturnDistanceToPlayerPawn() const
 {
 	if (!PlayerPawn)
 	{
 		return 0.f;
 	}
-	return FVector::Dist(GetActorLocation(), PlayerPawn->GetActorLocation());
+	float Distance = FVector::Dist(GetActorLocation(), PlayerPawn->GetActorLocation());
+	return Distance;
 }
