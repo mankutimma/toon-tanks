@@ -5,6 +5,8 @@
 #include "PawnTurret.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
+#include "PawnTank.h"
+
 
 APawnTurret::APawnTurret()
 {

@@ -25,6 +25,11 @@ private:
 	float FireRange = 500.f;
 
 	FTimerHandle FireRateTimerHandle;
+	APawnTank* PlayerPawn = nullptr;
+
+	void CheckFireCondition();
+	float ReturnDistanceToPlayerPawn() const;
+
 
 	APawnTank* PlayerPawn = nullptr;
 
