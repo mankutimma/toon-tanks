@@ -40,4 +40,16 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	// override is added to avoid ambiguity and not really for functionality. It is for the system/compiler and developers to know that
+	// this method isn't a new one but an extension of the method from the base/parent class
+
+	// "override" keyword in the declaration of the extension function (in inherited class)
+	// and the "virtual" keyword in the declaration of the function in the base class go hand in hand
+
+	// Without the "override" - "virtual" pair, functions can be overridden but don't offer transparency to developers
+
+	// The "virtual" keyword helps the developer understand that the method is overridden in the inherited classes and modification of the
+	// base class method should be done with caution
+	/*void TEST() override;*/
 };

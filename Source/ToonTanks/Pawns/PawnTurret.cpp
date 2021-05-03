@@ -23,8 +23,18 @@ void APawnTurret::BeginPlay()
 	// the last argument is true to enable looping i.e., the timer continues to run and doesn't stop after FireRate seconds
 	GetWorld()->GetTimerManager().SetTimer(FireRateTimerHandle, this, &APawnTurret::CheckFireCondition, FireRate, true);
 
+	// cast is a way for cross-class communication. Here, APawn is cast to APawnTank
 	PlayerPawn = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0)); // PLayer 0 is the only player in a single-player game
+
+	// TEST();
 }
+
+//void APawnTurret::TEST()
+//{
+//	// Super calls code within the base class method
+//	Super::TEST();
+//	UE_LOG(LogTemp, Warning, TEXT("Inside PawnTurret class"));
+//}
 
 // Called every frame
 void APawnTurret::Tick(float DeltaTime)

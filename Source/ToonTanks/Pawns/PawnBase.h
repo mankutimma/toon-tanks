@@ -32,4 +32,15 @@ private:
 public:
 	// Sets default values for this pawn's properties
 	APawnBase();
+
+protected:
+	void RotatePawnHead(FVector TargetLocation);
+
+	void Fire();
+
+	virtual void HandleDestruction();
+
+	// The "virtual" keyword helps the developer understand that the method is overridden in the inherited classes and modification of the
+	// base class method should be done with caution
+	//virtual void TEST();
 };
