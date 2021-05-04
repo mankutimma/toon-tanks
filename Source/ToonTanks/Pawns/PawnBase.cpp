@@ -29,11 +29,20 @@ void APawnBase::RotatePawnHead(FVector TargetLocation)
 {
 	// Update TurretMesh rotation to face towards TargetLocation passed in from child classes
 	// TurretMesh->SetWorldRotation()...
+
+	// "z" of the vector is TurretMesh's or pawn-head's location since we do not want the rotation to happen in z-axis i.e., vertical
+	FVector LookAtTarget = FVector(TargetLocation.X, TargetLocation.Y, TurretMesh->GetComponentLocation().Z);
+
+	FVector StartLocation = TurretMesh->GetComponentLocation();
+
+	FRotator PawnHeadRotation = FVector(LookAtTarget - StartLocation).Rotation();
+	TurretMesh->SetWorldRotation(PawnHeadRotation);
 }
 
 void APawnBase::Fire()
 {
 	// Get ProjectileSpawnPoint "location" and "rotation" -> Spawn Projectile class at "location" firing towards "rotation"
+	UE_LOG(LogTemp, Warning, TEXT("Fire condition successful at %f"), GetWorld()->GetTimeSeconds());
 }
 
 void APawnBase::HandleDestruction()
@@ -45,7 +54,8 @@ void APawnBase::HandleDestruction()
 	// PawnTurret - Inform GameMode Turret/shooter died -> Then Destroy() self
 
 	// --- Then do child overrides ---
-	// PawnTank -> Inform GameMode Player died -> Then hide all visual components and disable movement
+	// PawnTank -> Inform GameMode Player died -> Then hide all visual components 
+	// (and not just the player camera component because then hard switch happens to the default camera its not good UX) and disable movement
 }
 
 

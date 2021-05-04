@@ -6,6 +6,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 
+#define OUT
+
 
 APawnTank::APawnTank()
 {
@@ -20,6 +22,14 @@ void APawnTank::BeginPlay()
 {
 	Super::BeginPlay();
 
+	PlayerControllerRef = Cast<APlayerController>(GetController());
+}
+
+void APawnTank::HandleDestruction()
+{
+	Super::HandleDestruction();
+	UE_LOG(LogTemp, Warning, TEXT("Destroying the opponent!"));
+	// Hide visual components and disbale movement
 }
 
 // Called every frame
@@ -29,6 +39,19 @@ void APawnTank::Tick(float DeltaTime)
 
 	Rotate();
 	Move();
+
+	if (PlayerControllerRef)
+	{
+		FHitResult TraceHitResult;
+
+		// Gets hits on the mouse pointer movement
+		PlayerControllerRef->GetHitResultUnderCursor(ECC_Visibility, false, OUT TraceHitResult);
+
+		// Tracks the mouse pointer
+		FVector HitLocation = TraceHitResult.ImpactPoint;
+
+		RotatePawnHead(HitLocation);
+	}
 }
 
 // Called to bind functionality to input
@@ -38,6 +61,9 @@ void APawnTank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &APawnTank::CalculateMoveInput); // "this" is the "world context"
 	PlayerInputComponent->BindAxis("Turn", this, &APawnTank::CalculateRotateInput);
+
+	// "this" is the class context
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APawnTank::Fire);
 }
 
 void APawnTank::CalculateMoveInput(float Value)

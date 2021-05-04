@@ -29,6 +29,13 @@ void APawnTurret::BeginPlay()
 	// TEST();
 }
 
+void APawnTurret::HandleDestruction()
+{
+	Super::HandleDestruction();
+	UE_LOG(LogTemp, Warning, TEXT("Opponent will be destroyed!"));
+	Destroy();
+}
+
 //void APawnTurret::TEST()
 //{
 //	// Super calls code within the base class method
@@ -40,6 +47,13 @@ void APawnTurret::BeginPlay()
 void APawnTurret::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (!PlayerPawn || ReturnDistanceToPlayerPawn() > FireRange)
+	{
+		return;
+	}
+	// Call rotate function here to track the player
+	RotatePawnHead(PlayerPawn->GetActorLocation());
 }
 
 void APawnTurret::CheckFireCondition()
@@ -53,7 +67,7 @@ void APawnTurret::CheckFireCondition()
 	// If Player is in RANGE, then FIRE!!
 	if (ReturnDistanceToPlayerPawn() <= FireRange)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Fire condition successful at %f"), GetWorld()->GetTimeSeconds());
+		Fire();
 	}
 }
 

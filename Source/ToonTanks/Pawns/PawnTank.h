@@ -26,6 +26,9 @@ private:
 	FVector MoveDirection;
 	FQuat RotationDirection;
 
+	// controls status, possession etc., of the player pawn
+	APlayerController* PlayerControllerRef = nullptr;
+
 	// For axis bindings and to calculate the direction of movement
 	// Value is 0 when nothing is pressed and 1 when 'W' is pressed and -1 when 'S' is pressed. This is defined in Edit -> Project Settings -> Engine -> Input -> Axis mappings 
 	void CalculateMoveInput(float Value);
@@ -57,4 +60,6 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	void HandleDestruction() override;
 };

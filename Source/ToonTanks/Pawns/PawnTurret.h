@@ -41,6 +41,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void HandleDestruction() override;
+
 	// override is added to avoid ambiguity and not really for functionality. It is for the system/compiler and developers to know that
 	// this method isn't a new one but an extension of the method from the base/parent class
 
