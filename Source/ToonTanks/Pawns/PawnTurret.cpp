@@ -33,6 +33,8 @@ void APawnTurret::HandleDestruction()
 {
 	Super::HandleDestruction();
 	UE_LOG(LogTemp, Warning, TEXT("Opponent will be destroyed!"));
+	
+	//Destroy this actor
 	Destroy();
 }
 
