@@ -3,6 +3,7 @@
 
 #include "PawnBase.h"
 #include "Components/CapsuleComponent.h"
+#include "ToonTanks/Actors/ProjectileBase.h"
 
 // Sets default values
 APawnBase::APawnBase()
@@ -43,6 +44,17 @@ void APawnBase::Fire()
 {
 	// Get ProjectileSpawnPoint "location" and "rotation" -> Spawn Projectile class at "location" firing towards "rotation"
 	UE_LOG(LogTemp, Warning, TEXT("Fire condition successful at %f"), GetWorld()->GetTimeSeconds());
+
+	if (ProjectileBaseClass)
+	{
+		FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
+		FRotator SpawnRotation = ProjectileSpawnPoint->GetComponentRotation();
+		AProjectileBase* TempProjectile = GetWorld()->SpawnActor<AProjectileBase>(ProjectileBaseClass, SpawnLocation, SpawnRotation);
+
+		// Set the current class i.e., APawnBase as the parent or owner class of this projectile so that going furter it doesn't damage the
+		// tank that fired it
+		TempProjectile->SetOwner(this);
+	}
 }
 
 void APawnBase::HandleDestruction()

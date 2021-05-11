@@ -11,12 +11,16 @@
 // An advantage of forward declarations over header file includes is that it reduces compile time.
 class UCapsuleComponent;
 
+class AProjectileBase;
+
 UCLASS()
 class TOONTANKS_API APawnBase : public APawn
 {
 	GENERATED_BODY()
 
 private:
+	/* ******************************************* COMPONENTS SECTION ******************************************* */
+
 	// Capsule component is used for simple collission
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta=(AllowPrivateAccess="true"))
 	UCapsuleComponent* CapsuleComp = nullptr;
@@ -24,10 +28,19 @@ private:
 	// We don't need to forward declare static mesh components or scene components since the APawn/Aactor class is already aware of what it is.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* BaseMesh = nullptr;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* TurretMesh = nullptr;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint = nullptr; //Scene component is a collection of data essentially with transforms so that we can place the projectile at a certain spawn point
+
+
+	/* ******************************************* VARIABLES SECTION ******************************************* */
+
+	// does it make sense to initialize class pointer to nullptr?
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile Type", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<AProjectileBase> ProjectileBaseClass;
 
 public:
 	// Sets default values for this pawn's properties

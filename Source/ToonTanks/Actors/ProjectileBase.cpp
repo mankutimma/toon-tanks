@@ -10,9 +10,11 @@ AProjectileBase::AProjectileBase()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
+	// create a ProjectileMesh component (similar to add component functionality in blueprint)
 	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
 	RootComponent = ProjectileMesh;
 
+	// create a ProjectileMovement component (similar to add component functionality in blueprint)
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	// We do not need to setup attachment here since there is no visual hierarchy here
 
