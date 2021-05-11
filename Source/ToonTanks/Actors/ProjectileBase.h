@@ -29,7 +29,7 @@ private:
 	// UPROPERTY(EditDefaultsOnly, Category = Damage)
 		// UClass* DamageType;
 	UPROPERTY(EditDefaultsOnly, Category = "Damage", meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<UDamageType> DamageType; // class pointer
+	TSubclassOf<UDamageType> DamageType = nullptr; // class pointer
 	// Also see class pointers vs object pointers answers by ScottSpadea here: https://answers.unrealengine.com/questions/462096/why-use-tsubclassof-and-not-just-the-class-itself.html#
 
 

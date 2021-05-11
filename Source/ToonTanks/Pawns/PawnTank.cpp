@@ -29,7 +29,7 @@ void APawnTank::HandleDestruction()
 {
 	Super::HandleDestruction();
 	UE_LOG(LogTemp, Warning, TEXT("Destroying the opponent!"));
-	// Hide visual components and disbale movement
+	// Hide visual components and disable movement
 }
 
 // Called every frame

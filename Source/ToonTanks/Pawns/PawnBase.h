@@ -39,8 +39,9 @@ private:
 	/* ******************************************* VARIABLES SECTION ******************************************* */
 
 	// does it make sense to initialize class pointer to nullptr?
+	// answer: yes, since the value comes from the designer who uses blueprint whether it is a BP_ProjectileBase or ProjectileBase or None (nullptr)
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile Type", meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<AProjectileBase> ProjectileBaseClass;
+	TSubclassOf<AProjectileBase> ProjectileBaseClass = nullptr;
 
 public:
 	// Sets default values for this pawn's properties
